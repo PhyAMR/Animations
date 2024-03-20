@@ -38,6 +38,8 @@ def LV2(a, b, alph, bet, gam, delt, ic):
     def max_min_arrays(array1, array2):
         max_mayor = max(max(array1), max(array2))
         min_menor = min(min(array1), min(array2))
+        if max_mayor == min_menor:
+            max_mayor += 1
         return max_mayor, min_menor
     may, miy = max_min_arrays(xp, yp)
     axis.set_ylim(miy, may)
@@ -126,4 +128,4 @@ LV2(0, 30, 1, 1, 1, 1, [1, 1])
 
 
 # Llama a la función para iniciar la animación
-LV2(0, 40, 1, 1, 1, 1, [2, 3])
+# LV2(0, 40, 1, 1, 1, 1, [2, 3])
