@@ -44,6 +44,9 @@ def LV2(a, b, alph, bet, gam, delt, ic):
     may, miy = max_min_arrays(xp, yp)
     axis.set_ylim(miy, may)
 
+    axis.set_title(
+        r"$\frac{dx}{dt}=\alpha x-\beta xy$ \n $\frac{dy}{dt}=\gamma xy-\delta y$")
+
     ani_plot_c, = axis.plot([], [], label='Prey population')
     ani_plot_z, = axis.plot([], [], label='Predator population')
 
@@ -53,7 +56,7 @@ def LV2(a, b, alph, bet, gam, delt, ic):
         return ani_plot_c, ani_plot_z
 
     animation1 = FuncAnimation(
-        fig=fig, func=udata1, frames=len(tp), interval=b/N)
+        fig=fig, func=udata1, frames=len(tp), interval=b)
 
     legend()
     show()  # Agregamos esta línea para mostrar la animación
@@ -61,7 +64,7 @@ def LV2(a, b, alph, bet, gam, delt, ic):
 
 
 # Llama a la función para iniciar la animación
-LV2(0, 30, 1, 1, 1, 1, [1, 1])
+LV2(0, 300, 0.1, 0.002, 0.0025, 0.2, [20, 80])
 
 
 """ def LV2(a, b, alph, bet, gam, delt, ic):
