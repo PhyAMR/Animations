@@ -32,8 +32,8 @@ def LV2(a, b, alph, bet, gam, delt, ic):
         k3 = h * f(r + k2 / 2, t + h / 2)
         k4 = h * f(r + k3, t + h)
         r += 1 / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
-    fig, axis = subplots()
-    axis.set_xlim(min(tp), max(tp))
+    fig, axis = subplots(ncols=2)
+    axis[0].set_xlim(min(tp), max(tp))
 
     def max_min_arrays(array1, array2):
         max_mayor = max(max(array1), max(array2))
@@ -42,21 +42,28 @@ def LV2(a, b, alph, bet, gam, delt, ic):
             max_mayor += 1
         return max_mayor, min_menor
     may, miy = max_min_arrays(xp, yp)
-    axis.set_ylim(miy, may)
+    axis[0].set_ylim(miy, may)
+    axis[1].set_xlim(miy, may)
+    axis[1].set_ylim(miy, may)
 
-    axis.set_title(
-        r"$\frac{dx}{dt}=\alpha x-\beta xy$ \n $\frac{dy}{dt}=\gamma xy-\delta y$")
+    axis[0].set_title(
+        f"$\\frac{{dx}}{{dt}}={alph}x-{bet}xy$  $\\frac{{dy}}{{dt}}={gam}xy-{delt}y$")
+    axis[1].set_title(
+        "Prey VS Predator")
 
-    ani_plot_c, = axis.plot([], [], label='Prey population')
-    ani_plot_z, = axis.plot([], [], label='Predator population')
+    ani_plot_c, = axis[0].plot([], [], label=f"Prey population")
+    ani_plot_z, = axis[0].plot([], [], label=f"Predator population ")
+    ani_plot,   = axis[1].plot([], [])
 
     def udata1(frame):
         ani_plot_z.set_data(tp[:frame], yp[:frame])
         ani_plot_c.set_data(tp[:frame], xp[:frame])
+        ani_plot.set_data(xp[:frame], yp[:frame])
+
         return ani_plot_c, ani_plot_z
 
     animation1 = FuncAnimation(
-        fig=fig, func=udata1, frames=len(tp), interval=b)
+        fig=fig, func=udata1, frames=len(tp), interval=b/N)
 
     legend()
     show()  # Agregamos esta línea para mostrar la animación
