@@ -4,4 +4,4 @@
 
 This is my first differential equation simulated, here you can see what it shows:
 
-![Lotka-Volterra simulation](Animations/LTKV.gif)
+![Lotka-Volterra simulation](GIFS/LTKV.gif)
