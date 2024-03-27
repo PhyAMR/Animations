@@ -71,4 +71,4 @@ def LV2(a, b, alph, bet, gam, delt, ic):
 
 
 # Llama a la función para iniciar la animación
-LV2(0, 300, 0.1, 0.002, 0.0025, 0.2, [20, 80])
+LV2(0, 300, 0.1, 0.002, 0.0025, 0.2, [20, 80]).save("GIFS/LTKV.gif")
