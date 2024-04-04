@@ -44,7 +44,7 @@ def MCDecay1(NB, b, N):
                     if random() < ppB:
                         NBI += 1
 
-    fig, axis = subplots()
+    fig, axis = subplots(figsize=(15, 15))
     axis.set_xlim(min(t), max(t))
     axis.set_ylim(-5, ma)
     axis.text(0.5, 1.100, "Átomos de $^{213}$ Bi | Átomos de $^{209}$ Bi | Átomos de $^{209}$ Pb | Átomos de $^{209}$ Ti | Time: ", bbox={'facecolor': 'white',
