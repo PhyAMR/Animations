@@ -1,4 +1,13 @@
 def get_elemnts(user):
+
+    """ Crea un dataframe de pandas con los nombres de los elementos padres e hijos en una cadena de desintegración; además 
+    de las propiedades de probabilidad de desintegración del núcleo padre, tiempo de vida medio del nucleo padre
+    
+    Prameters: 
+    User: Elemento de los cuales se quiere obtener la cadena de desintegración
+    
+    Returns:
+    base2: Dataframe con los datos de todos los elementos de la cadena"""
     import pandas as pd
 
     # the service URL
