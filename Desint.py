@@ -12,15 +12,15 @@ def MCDecay1(NB, b, N):
 
     t = linspace(0, b, N)
 
-    ma = NB
-    NP = 0
-    NBI = 0
-    NTI = 0
+    ma = NB # Número inicial de nucleos
+    NP = 0  # Número inicial de nucleos
+    NBI = 0 # Número inicial de nucleos
+    NTI = 0 # Número inicial de nucleos
 
-    bp = []
-    bip = []
-    pbp = []
-    tip = []
+    bp = []  # Listas donde guardaremos el número de átomos a medida que se vayan desintegrando
+    bip = [] # Listas donde guardaremos el número de átomos a medida que se vayan desintegrando
+    pbp = [] # Listas donde guardaremos el número de átomos a medida que se vayan desintegrando
+    tip = [] # Listas donde guardaremos el número de átomos a medida que se vayan desintegrando
     for i in t:
         pB = 1-2**(-i/tauB)
         ppB = 1-2**(-i/tauPb)

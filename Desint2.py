@@ -101,12 +101,45 @@ def create_lists_and_counters(df):
           una lista de registros, una lista para números y un contador.
     """
     # Crear un diccionario basado en los valores únicos de 'd_name'
-    dict_of_data = {d_name: {'records': [], 'numbers_list': [],
-                             'counter': 0} for d_name in df['d_name'].unique()}
+    dict_of_data = {p_name: {'records': [], 'numbers_list': [],
+                             'counter': 0} for p_name in df['p_name'].unique()}
 
     # Rellenar el diccionario con las filas correspondientes
-    for d_name in dict_of_data:
-        dict_of_data[d_name]['records'] = df[df['d_name']
-                                             == d_name].to_dict('records')
+    for p_name in dict_of_data:
+        dict_of_data[p_name]['records'] = df[df['p_name']
+                                             == p_name].to_dict('records')
 
     return dict_of_data
+
+def aupdate_data(dict,user):
+    import numpy as np
+    import random
+    from matplotlib.pyplot import plot, show, legend
+    t=np.linspace(0,3000000,3000000)
+    initial_counts =1000
+    data[user]['counter']=initial_counts
+    for i in t:
+        for key, value in dict.items():
+            dict[key]['numbers_list'].append(dict[key]['counter'])
+            for _ in range(dict[key]['counter']):
+                
+                for j in value['records']:
+                    prob = 1-2**(-i/j['half_life_sec'])
+                    
+                    if random.random() < prob and random.random() < j['decay_%']:
+                        #print(key,dict[key]['counter'],prob)
+                        if j['d_name'] in dict.keys():
+                            dict[key]['counter']-=1
+                            dict[j['d_name']]['counter']+=1
+                        else:
+                            break
+
+    for key, value in dict.items():
+        plot(t,dict[key]['numbers_list'], label=key)
+    legend()
+    show()
+    #return data
+user="214bi"
+base =get_elemnts(user)
+data= create_lists_and_counters(base)
+aupdate_data(data,user)

@@ -8,15 +8,15 @@ def distance(x1, y1, x2, y2):
 
 def main():
 
-    Nx, Ny, Nt = 100, 400, 3000  # Dimensions of the lattice and time of simulation
+    Nx, Ny, Nt = 100, 100, 3000  # Dimensions of the lattice and time of simulation
 
-    tau = 0.53  # Visocsity
+    tau = 0.63  # Visocsity
     NL = 9
     cxs = np.array([0, 0, 1, 1, 1, 0, -1, -1, -1], int)  # x velocities
     cys = np.array([0, 1, 1, 0, -1, -1, -1, 0, 1], int)  # y velocities
 
     weights = np.array(
-        [4/9, 1/9, 1/36, 1/9, 1/36, 1/9, 1/36, 1/9, 1/36], float)
+        [4/9, 1/9, 1/36, 1/9, 1/36, 1/9, 1/36, 1/9, 1/36])
 
     # Initial condictions
 
@@ -35,8 +35,8 @@ def main():
         print(ii)
 
         for i, cx, cy in zip(range(NL), cxs, cys):
-            F[:, :, i] = np.roll(F[:, :, i], cx, axis=0)
             F[:, :, i] = np.roll(F[:, :, i], cy, axis=1)
+            F[:, :, i] = np.roll(F[:, :, i], cx, axis=0)
 
         bondaryF = F[cylinder, :]
         bondaryF = bondaryF[:, [0, 5, 6, 7, 8, 1, 2, 3, 4]]
@@ -64,7 +64,7 @@ def main():
 
         if ii % 50 == 0:
             plt.imshow(np.sqrt(ux**2+uy**2))
-            plt.pause(0.1)
+            plt.pause(0.01)
             plt.cla()
 
 
