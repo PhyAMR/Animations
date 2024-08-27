@@ -161,21 +161,20 @@ def aupdate_data(user, b, N):
                     prob = 1 - 2 ** (-i / j["half_life_sec"])
 
                     if random.random() < prob and random.random() < j["decay_%"]:
-                        # print(key,dict[key]['counter'],prob)
+
                         if j["d_name"] in dict.keys():
                             dict[key]["counter"] -= 1
                             dict[j["d_name"]]["counter"] += 1
                         else:
                             break
     aniplots = []
-    fig, axis = subplots(figsize=(15, 15))
-    axis.set_ylim(-5, initial_counts)
-    axis.set_xlim(min(t), max(t))
+    fig, axis = subplots(figsize=(15, 15), ncols=2)
+    axis[0].set_ylim(-5, initial_counts)
+    axis[0].set_xlim(min(t), max(t))
     for key, value in dict.items():
         aniplots.append(
-            axis.plot([], [], label=f"Átomos de {key}"),
+            axis[0].plot([], [], label=f"Átomos de {key}"),
         )
-        # plot(t,dict[key]['numbers_list'], label=key)
 
     def udata1(frame):
         for anis, (key, value) in zip(aniplots, dict.items()):
